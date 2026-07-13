@@ -1,41 +1,33 @@
 class Solution {
   public:
-    bool dfs(int v, int parent, vector<vector<int>>& adj, vector<bool>& visited){
-        visited[v]= true;
-        for(int neighbour: adj[v]){
-            if(!visited[neighbour]){
-                if(dfs(neighbour, v, adj, visited)){
+    bool dfs(int node, int parent, vector<bool>& vis, vector<vector<int>>& adj){
+        vis[node]= true;
+        for(auto adjNode: adj[node]){
+            if(!vis[adjNode]){
+                if(dfs(adjNode, node, vis, adj)== true) 
                     return true;
-                }
             }
-            else if(neighbour!= parent) return true;
+            else if(adjNode!= parent) return true;
         }
         return false;
     }
-    
+  
     bool isCycle(int V, vector<vector<int>>& edges) {
-        // build adjacency list
         vector<vector<int>> adj(V);
-        
-        for(vector<int>& edge : edges){
+        for(auto &edge: edges){
             int u= edge[0];
             int v= edge[1];
             
             adj[u].push_back(v);
             adj[v].push_back(u);
         }
+        vector<bool> vis (V, false);
         
-        // step2: visited array
-        vector<bool> visited(V, false);
-        
-        //check every connected component
         for(int i=0; i<V; i++){
-            if(!visited[i]) {
-                if(dfs(i, -1, adj, visited)){
-                    return true;
-                }
+            if(!vis[i]){
+                if(dfs(i, -1, vis, adj)== true) return true;
             }
         }
-     return false;   
+        return false;
     }
 };
