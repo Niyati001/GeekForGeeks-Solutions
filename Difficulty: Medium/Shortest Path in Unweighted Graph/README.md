@@ -8,4 +8,4 @@
 <strong>Output:</strong> -1
 <strong>Explanation:</strong> There is no path between vertices 3 and 2.</span><span style="font-size: 14pt;"><br><img src="https://media.geeksforgeeks.org/img-practice/prod/addEditProblem/711976/Web/Other/blobid0_1747111194.webp" width="197" height="186"></span></span></pre>
 <p><span style="font-size: 14pt;"><strong>Constraints:</strong><br></span></p>
-<p><span style="font-size: 18.6667px;">1 ≤ V ≤ 10^4<br></span><span style="font-size: 18.6667px;">0 ≤ E ≤ V × (V - 1) / 2<br></span><span style="font-size: 18.6667px;">0 ≤ edges[i][0], edges[i][1] &lt; V</span></p></div><br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Graph</code>&nbsp;<code>BFS</code>&nbsp;<code>Algorithms</code>&nbsp;
+<p><span style="font-size: 18.6667px;">1 ≤ V ≤ 10^4<br></span><span style="font-size: 18.6667px;">0 ≤ E ≤ V × (V - 1) / 2<br></span><span style="font-size: 18.6667px;">0 ≤ edges[i][0], edges[i][1] &lt; V</span></p></div><br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Graph</code>&nbsp;<code>BFS</code>&nbsp;
