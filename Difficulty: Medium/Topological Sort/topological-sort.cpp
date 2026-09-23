@@ -1,47 +1,36 @@
 class Solution {
-public:
-    void dfs(int node, vector<int>& vis, stack<int>& st, vector<vector<int>>& adj) {
-        vis[node] = 1;
-
-        for (int neighbour : adj[node]) {
-            if (!vis[neighbour]) {
-                dfs(neighbour, vis, st, adj);
-            }
-        }
-
-        // Push after visiting all neighbours
-        st.push(node);
-    }
-
+  public:
     vector<int> topoSort(int V, vector<vector<int>>& edges) {
-
-        // Step 1: Build adjacency list
+        // code here
         vector<vector<int>> adj(V);
-
-        for (auto edge : edges) {
-            int u = edge[0];
-            int v = edge[1];
-            adj[u].push_back(v);
+        vector<int> inDegree(V, 0);
+        
+        for(auto &edge: edges){
+            adj[edge[0]].push_back(edge[1]);
+            inDegree[edge[1]]++;
         }
-
-        // Step 2: DFS
-        vector<int> vis(V, 0);
-        stack<int> st;
-
-        for (int i = 0; i < V; i++) {
-            if (!vis[i]) {
-                dfs(i, vis, st, adj);
+        queue<int> q;
+        
+        for(int i=0; i<V; i++){
+            if(inDegree[i]== 0){
+                q.push(i);
             }
         }
-
-        // Step 3: Pop stack to get topo order
         vector<int> ans;
-
-        while (!st.empty()) {
-            ans.push_back(st.top());
-            st.pop();
+        
+        while(!q.empty()){
+            int node= q.front();
+            q.pop();
+            
+            ans.push_back(node);
+            
+            for(auto neig: adj[node]){
+                inDegree[neig]--;
+                if(inDegree[neig]== 0){
+                    q.push(neig);
+                }
+            }
         }
-
         return ans;
     }
 };
