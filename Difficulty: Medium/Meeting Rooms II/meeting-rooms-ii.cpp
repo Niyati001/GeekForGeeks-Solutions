@@ -8,14 +8,15 @@ class Solution {
         int i=0;
         int j=0;
         
-        int rooms= 0;
+        int rooms=0;
         int maxRooms=0;
         
-        while(i< start.size()){
+        while(i<start.size()){
             if(start[i]< end[j]){
                 rooms++;
-                maxRooms= max(maxRooms, rooms);
                 i++;
+                
+                maxRooms= max(maxRooms, rooms);
             }
             else{
                 rooms--;
