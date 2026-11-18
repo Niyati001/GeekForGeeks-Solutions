@@ -1,73 +1,44 @@
 class Solution {
-public:
+  public:
     string minWindow(string& s1, string& s2) {
-
-        int n = s1.size();
-        int m = s2.size();
-
-        int bestLen = INT_MAX;
-        int start = -1;
-
-        int i = 0;
-
-        while(i < n) {
-
-            int j = 0;
-
-            // Forward scan: find s2 as subsequence
-            while(i < n) {
-
-                if(s1[i] == s2[j])
+        // Code here
+        int n= s1.size();
+        int m= s2.size();
+        
+        int start=-1;
+        int ansLen= INT_MAX;
+        
+        int i=0;
+        
+        while(i<n){
+            int j=0;
+            
+            while(i<n && j<m){
+                if(s1[i]== s2[j])
                     j++;
-
-                if(j == m)
-                    break;
-
                 i++;
             }
-
-
-            // No subsequence found
-            if(j < m)
+            if(j<m)
                 break;
-
-
-            // i is at the end of the window
-            int end = i;
-
-
-            // Backward scan: minimize window
-            j = m - 1;
-
-            while(j >= 0) {
-
-                if(s1[end] == s2[j])
+                
+            int end= i-1;
+            
+            j= m-1;
+            
+            while(j>=0){
+                if(s1[end]== s2[j])
                     j--;
-
                 end--;
             }
-
-
-            int windowStart = end + 1;
-
-
-            // Update answer
-            if(i - windowStart + 1 < bestLen) {
-
-                bestLen = i - windowStart + 1;
-                start = windowStart;
+            
+            int left= end+1;
+            
+            if(i- left< ansLen){
+                ansLen= i- left;
+                start= left;
             }
-
-
-            // Start next search
-            i = windowStart + 1;
+            i= left+1;
         }
-
-
-        if(start == -1)
-            return "";
-
-
-        return s1.substr(start, bestLen);
+        return start== -1? "": s1.substr(start, ansLen);
     }
 };
